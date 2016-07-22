@@ -1,0 +1,11 @@
+DEPENDENCIES
+  dockerhost
+    path: .
+    metadata: true
+
+GRAPH
+  apt (2.7.0)
+  docker (0.40.3)
+  dockerhost (0.2.0)
+    apt (~> 2.7.0)
+    docker (~> 0.40.3)

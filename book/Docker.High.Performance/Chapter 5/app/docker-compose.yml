@@ -1,0 +1,12 @@
+web:
+#  log_driver: syslog
+#  log_opt:
+#    syslog-tag: nginx
+  build: ./nginx
+  ports:
+    - 80:80
+  volumes_from:
+    - app
+app:
+#  log_driver: syslog
+  build: ./unicorn

@@ -1,0 +1,5 @@
+REQUESTPATH \"%{WORD:method} %{URIPATHPARAM} HTTP.*\"
+HTTPREQUEST %{REQUESTPATH} %{NUMBER:response_code}
+WEBMETRICS %{NUMBER:bytes_sent:int} %{NUMBER:response_time:float}
+NGINXSOURCE %{IP:client} \[%{HTTPDATE:requested_at}\]
+NGINXACCESS %{NGINXSOURCE} %{HTTPREQUEST} %{WEBMETRICS}

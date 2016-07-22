@@ -1,0 +1,238 @@
+# Linux Capabilities 
+
+$ docker run --cap-add=NET_ADMIN busybox sh -c "ip link eth0 down" 
+
+$ docker run --cap-drop=CHOWN ... 
+
+$ docker run --cap-add=ALL --cap-drop=MKNOD ... 
+
+# Securing Containers in AWS ECS (EC2 Container Service) 
+
+$ sudo yum install -y git 
+
+$ git clone https://github.com/awslabs/ecs-demo-php-simple-app 
+
+$ cd ecs-demo-php-simple-app 
+
+$ cat Dockerfile 
+
+$ docker build -t my-dockerhub-username/amazon-ecs-sample . 
+
+$ docker login 
+
+$ docker push my-dockerhub-username/amazon-ecs-sample 
+
+$ mkdir proxy-container
+
+$ cd proxy-container 
+
+$ nano Dockerfile 
+
+FROM ubuntu
+
+RUN apt-get update && apt-get install -y nginx
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+
+EXPOSE 80
+
+CMD service nginx start 
+
+$ docker build -t my-dockerhub-username/proxy-image .
+
+$ docker push my-dockerhub-username/proxy-image 
+
+# Basic network namespace management 
+
+$ ip netns add netns1 
+
+$ ip netns exec netns1 ip link list 
+
+$ ip netns delete netns1 
+
+# Network namespace configuration 
+
+$ ip netns exec netns1 ping 127.0.0.1 
+
+$ ip netns exec netns1 ip link set dev lo up
+
+$ ip netns exec netns1 ping 127.0.0.1 
+
+$ ip link add veth0 type veth peer name veth1 
+
+$ ip link set veth1 netns netns1 
+
+$ ip netns exec netns1 ifconfig veth1 10.0.0.1/24 up
+
+$ ifconfig veth0 10.0.0.2/24 up 
+
+$ ping 10.0.0.1
+
+$ ip netns exec netns1 ping 10.0.0.2 
+
+$ ip netns exec netns1 route 
+
+$ ip netns exec netns1 iptables -L 
+
+# User NameSpace 
+
+$ docker run -it --net=host ubuntu /bin/bash
+
+  # ifconfig
+
+$ docker ps -q | xargs docker inspect --format '{{ .Id }}: NetworkMode={{ .HostConfig.NetworkMode }}' 
+
+$ docker ps -q | xargs docker inspect --format '{{ .Id }}: NetworkMode={{ .HostConfig.NetworkMode }}' 
+
+$ pip install nsenter 
+
+$ sudo nsenter --net --target=PID /bin/ip a 
+
+$ docker run -d --name=nginx -t nginx 
+
+PID=$(docker inspect --format {{.State.Pid}} nginx) 
+
+$ nsenter --target $PID --uts --ipc --net –pid 
+
+# Creating a cgroup manually 
+
+$ mount -t tmpfs cgroup_root /sys/fs/cgroup 
+
+$ mkdir /sys/fs/cgroup/cpuset
+
+$ mount -t cgroup -ocpuset cpuset /sys/fs/cgroup/cpuset
+
+$ cd /sys/fs/cgroup/cpuset
+
+$ mkdir Charlie
+
+$ cd Charlie
+
+$ /bin/echo 2-3 > cpuset.cpus
+
+$ /bin/echo 0 > cpuset.mems
+
+$ /bin/echo $$ > tasks 
+
+$ cat /proc/self/cgroup 
+
+$ /bin/echo PID > tasks 
+
+$ echo 0 > tasks 
+
+# App Armor and Docker 
+
+$ git clone https://github.com/jfrazelle/bane 
+
+$ go get github.com/BurntSushi/toml 
+
+$ go install 
+
+$ docker run --security-opt="apparmor:docker-nginx-sample" -p 80:80 --rm -it nginx bash 
+
+$ sudo invoke-rc.d apparmor reload 
+
+$ docker run --security-opt="apparmor:docker-nginx-sample" -p 80:80 --rm -it nginx bash
+
+   root@84d617972e04:/# ping 8.8.8.8
+
+# Audit Docker Daemon regularly 
+
+$ apt-get install auditd 
+
+$ cd /etc/audit/
+
+$ nano audit.log
+
+$ rm -rf audit.log 
+
+$ nano audit.rules
+
+-w /usr/bin/docker -k docker 
+
+$ service auditd restart
+
+$ ausearch -k docker
+
+$ docker ps 
+
+$ ausearch -k docker 
+
+# Create a user for the container 
+
+$ docker inspect centos 
+
+$ mkdir test-container
+
+$ cd test-container/
+
+$ cat Dockerfile
+
+FROM centos:latest
+
+RUN useradd test
+
+USER test
+
+root@ubuntu:~/test-container# docker build -t vkohli .
+
+Sending build context to Docker daemon 2.048 kB
+
+Step 1 : FROM centos:latest
+
+---> e9fa5d3a0d0e
+
+Step 2 : RUN useradd test
+
+---> Running in 0c726d186658
+
+---> 12041ebdfd3f
+
+Removing intermediate container 0c726d186658
+
+Step 3 : USER test
+
+---> Running in 86c5e0599c72
+
+---> af4ba8a0fec5
+
+Removing intermediate container 86c5e0599c72
+
+Successfully built af4ba8a0fec5
+
+$ docker images | grep vkohli
+
+$ docker run -it vkohli /bin/bash
+
+   [test@2ff11ee54c5f /]$ whoami
+
+   test
+
+   [test@2ff11ee54c5f /]$ exit
+
+$ docker inspect vkohli 
+
+# Do not mount sensitive host system directories on containers 
+
+$ docker run -ti -v /run/systemd:/run/systemd centos /bin/bash 
+
+   [root@1aca7fe47882 /]# systemctl status docker 
+
+   [root@1aca7fe47882 /]# shutdown 
+
+$ docker ps -q | xargs docker inspect --format '{{ .Id }}: Volumes={{ .Volumes }} VolumesRW={{ .VolumesRW }}' 
+
+# Do not use privileged containers 
+
+$ docker run -it centos /bin/bash
+
+   [root@7e1b1fa4fb89 /]# sysctl -w net.ipv4.ip_forward=0 
+
+$ docker run --privileged -it centos /bin/bash 
+
+   [root@930aaa93b4e4 /]# sysctl -w net.ipv4.ip_forward=0 
+
+$ docker ps -q | xargs docker inspect --format '{{ .Id }}: Privileged={{ .HostConfig.Privileged }}' 
+

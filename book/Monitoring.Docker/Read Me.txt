@@ -1,0 +1,7 @@
+All the chapters are tested.
+
+Please refer the software and hardware list for downloading the necessary software.
+
+There are total 8 Chapters. All the chapters have code files and is working properly.
+
+

@@ -1,0 +1,18 @@
+[
+  {
+    "areaMode": "stacked",
+    "yMin": "0",
+    "target": [
+      "aliasByMetric(dockerhost.memory.*)"
+    ],
+    "title": "Memory"
+  },
+  {
+    "areaMode": "stacked",
+    "yMin": "0",
+    "target": [
+      "aliasByMetric(dockerhost.cpu-0.*)"
+    ],
+    "title": "CPU"
+  }
+]

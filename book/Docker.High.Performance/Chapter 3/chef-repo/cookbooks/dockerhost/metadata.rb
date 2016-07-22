@@ -1,0 +1,10 @@
+name 'dockerhost'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures dockerhost'
+long_description 'Installs/Configures dockerhost'
+version '0.2.0'
+
+depends 'apt', '~> 2.7.0'
+depends 'docker', '~> 0.40.3'
