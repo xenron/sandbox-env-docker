@@ -1,0 +1,9 @@
+# zookeeper.Dockerfile
+cp zookeeper.Dockerfile Dockerfile
+docker build -t kafka_test/zookeeper:3.4.9 .
+rm -rf Dockerfile
+# start
+docker run -d kafka_test/zookeeper:3.4.9
+
+
+
