@@ -1,0 +1,6 @@
+
+# JavaVersion
+docker build -t xenron/kafka_standalone:0.9.0.0 --build-arg JavaVersion=1.8.0_102 JavaDownload=8u102 -f kafka_standalone_centos.Dockerfile .
+
+# ScalaVersion & KafkaVersion
+docker build -t xenron/kafka_standalone:0.9.0.0 --build-arg JavaVersion=1.8.0_102 KafkaVersion=0.9.0.0 -f kafka_standalone_centos.Dockerfile .
