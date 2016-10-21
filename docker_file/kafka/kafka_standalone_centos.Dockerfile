@@ -3,8 +3,9 @@ FROM centos:6.6
 ARG JavaVersion="1.8.0_102"
 ARG JavaRevision="102"
 ARG JavaBuildVersion="b14"
+ARG JavaDownload="8u102"
 # ENV JavaDownload=${JavaVersion:2:1}"u"${JavaVersion:6}
-ENV JavaDownload=8u102
+# ENV JavaDownload=8u102
 
 ARG ScalaVersion="2.11"
 
