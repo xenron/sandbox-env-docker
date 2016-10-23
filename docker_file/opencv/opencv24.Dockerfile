@@ -15,12 +15,17 @@ RUN apt-get update && \
 	pip install numpy msgpack-python ujson && \
 	rm -rf /root/.pip/cache/* /tmp/pip*
 
-ADD opencv-3.1.0.tar.xz /root
-RUN mkdir -p /root/opencv/build && cd /root/opencv/build && \
-	cmake -D CMAKE_BUILD_TYPE=RELEASE \
+RUN cd /opt && \
+    git clone https://github.com/Itseez/opencv.git && \
+    cd /opt/opencv/ && \
+    git checkout -b 2.4.13
+
+RUN mkdir -p /opt/opencv/build && \
+    cd /opt/opencv/build && \
+    cmake -D CMAKE_BUILD_TYPE=RELEASE \
 		-D CMAKE_INSTALL_PREFIX=/usr/local \
 		-D INSTALL_C_EXAMPLES=OFF \
 		-D INSTALL_PYTHON_EXAMPLES=ON \
-		-D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
 		-D BUILD_EXAMPLES=ON .. && \
-	make -j8 && make install && ldconfig && rm -rf /root/opencv_contrib /root/opencv /root/opencv-3.1.0.tar.xz
+	make -j8 && make install && ldconfig
+

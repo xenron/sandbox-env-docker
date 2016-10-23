@@ -22,7 +22,7 @@ RUN cd /opt && \
 RUN cd /opt && \
     git clone https://github.com/Itseez/opencv_contrib.git && \
     cd /opt/opencv_contrib/ && \
-    git checkout -b 3.1.10
+    git checkout -b 3.1.0
 
 RUN mkdir -p /opt/opencv/build && \
     cd /opt/opencv/build && \
