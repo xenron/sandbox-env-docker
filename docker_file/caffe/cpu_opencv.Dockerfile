@@ -64,7 +64,8 @@ ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
 
 # sed GPU to CPU
-sed -i "" 's/solver_mode: GPU/solver_mode: CPU/' `grep -F 'solver_mode: GPU' -rl //opt/caffe/examples/*.prototxt`
+# RUN sed -i "" 's/solver_mode: GPU/solver_mode: CPU/' `grep -F 'solver_mode: GPU' -rl //opt/caffe/examples/*.prototxt`
+# RUN sed -i "" 's/solver_mode: GPU/solver_mode: CPU/g' `grep -F 'solver_mode: GPU' -rl /opt/caffe/examples`
 
 WORKDIR /workspace
 
