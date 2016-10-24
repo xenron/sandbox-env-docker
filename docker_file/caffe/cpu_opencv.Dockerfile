@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         cmake \
         git \
         wget \
+        vim \
         libatlas-base-dev \
         libboost-all-dev \
         libgflags-dev \
@@ -23,6 +24,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-scipy && \
     rm -rf /var/lib/apt/lists/*
 
+# OpenCV
+RUN cd /opt && \
+    git clone https://github.com/Itseez/opencv.git && \
+    cd /opt/opencv/ && \
+    git checkout -b 3.1.0
+RUN cd /opt && \
+    git clone https://github.com/Itseez/opencv_contrib.git && \
+    cd /opt/opencv_contrib/ && \
+    git checkout -b 3.1.0
+
+RUN mkdir -p /opt/opencv/build && \
+    cd /opt/opencv/build && \
+    cmake -D CMAKE_BUILD_TYPE=RELEASE \
+		-D CMAKE_INSTALL_PREFIX=/usr/local \
+		-D INSTALL_C_EXAMPLES=OFF \
+		-D INSTALL_PYTHON_EXAMPLES=ON \
+		-D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib/modules \
+		-D BUILD_EXAMPLES=ON .. && \
+	make -j8 && make install && ldconfig
+
+
+# Caffe latest
 ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 
@@ -39,6 +62,9 @@ ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
 ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
+
+# sed GPU to CPU
+sed -i "" 's/solver_mode: GPU/solver_mode: CPU/' `grep -F 'solver_mode: GPU' -rl //opt/caffe/examples/*.prototxt`
 
 WORKDIR /workspace
 

@@ -6,6 +6,6 @@
 # Caffe latest
 
 # For CPU
-docker build -t xenron/caffe:14.04 -f cpu.Dockerfile .
+docker build -t xenron/caffe:14.04-cpu -f cpu.Dockerfile .
 # For GPU
-docker build -t xenron/caffe:14.04 -f gpu.Dockerfile .
+docker build -t xenron/caffe:14.04-gpu -f gpu.Dockerfile .

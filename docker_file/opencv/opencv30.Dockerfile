@@ -3,7 +3,7 @@ MAINTAINER Mark Hollow
 
 RUN apt-get update && \
 	apt-get upgrade -y && \
-	apt-get install -y curl wget \
+	apt-get install -y curl wget vim \
 		build-essential cmake git pkg-config python2.7-dev git \
 		libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev \
 		libavcodec-dev libavformat-dev libswscale-dev libv4l-dev \
@@ -33,3 +33,4 @@ RUN mkdir -p /opt/opencv/build && \
 		-D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib/modules \
 		-D BUILD_EXAMPLES=ON .. && \
 	make -j8 && make install && ldconfig
+
