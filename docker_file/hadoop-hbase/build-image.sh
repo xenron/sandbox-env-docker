@@ -23,7 +23,8 @@ function docker_build()
 {
 	cd $1
 	echo -e "\n\nsudo docker build -t krejcmat/$1:$tag ."
-	/usr/bin/time -f "real  %e" sudo docker build -t krejcmat/$1:$tag .
+	# /usr/bin/time -f "real  %e" sudo docker build -t krejcmat/$1:$tag .
+	sudo docker build -t krejcmat/$1:$tag .
 	cd ..
 }
 

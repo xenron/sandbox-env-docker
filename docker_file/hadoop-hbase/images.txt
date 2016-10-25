@@ -1,0 +1,14 @@
+REPOSITORY                TAG                 IMAGE ID            CREATED             SIZE
+dajobe/hbase              latest              b67f20c114a2        12 minutes ago      356.4 MB
+xenron/caffe              14.04-cpu           e1c45418f186        11 hours ago        7.32 GB
+xenron/opencv             14.04-2.4           b3f468d19ce5        16 hours ago        3.946 GB
+xenron/opencv             14.04-3.0           552880817806        16 hours ago        6.629 GB
+xenron/opencv             14.04-3.1           a576f1ae2046        16 hours ago        6.629 GB
+kiwenlau/hadoop           1.0                 802da9e33bce        24 hours ago        831.1 MB
+xenron/kafka_standalone   0.9.0.0             d9a1878c24ae        24 hours ago        956.2 MB
+jason/zookeeper           3.4.6               a6d304177bb7        24 hours ago        981.1 MB
+ubuntu                    xenial              f753707788c5        11 days ago         127.2 MB
+ubuntu                    14.04               1e0c3dd64ccd        11 days ago         187.9 MB
+centos                    6.6                 d03626170061        7 weeks ago         202.6 MB
+hello-world               latest              693bce725149        4 months ago        967 B
+nginx                     latest              0d409d33b27e        4 months ago        182.8 MB

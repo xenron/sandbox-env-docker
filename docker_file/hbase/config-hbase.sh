@@ -2,8 +2,9 @@
 
 # . /build/config.sh
 
-HBASE_DIST="http://apache.cs.utah.edu/hbase"
-#HBASE_DIST="http://archive.apache.org/dist/hbase"
+# HBASE_DIST="https://archive.apache.org/dist/hbase"
+# HBASE_DIST="http://apache.cs.utah.edu/hbase"
+HBASE_DIST="http://archive.apache.org/dist/hbase"
 
 # Prevent initramfs updates from trying to run grub and lilo.
 export INITRD=no
