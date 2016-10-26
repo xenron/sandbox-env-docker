@@ -1,4 +1,5 @@
 
+# Build image from Dockerfile
 docker build -t kiwenlau/hadoop:1.0 -f Dockerfile .
 
 
