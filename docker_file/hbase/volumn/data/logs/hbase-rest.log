@@ -1,0 +1,19 @@
+2016-10-26 12:30:38,220 INFO  [main] util.VersionInfo: HBase 1.1.6
+2016-10-26 12:30:38,228 INFO  [main] util.VersionInfo: Source code repository git://diocles.local/Volumes/hbase-1.1.6/hbase revision=2039d967835afd066676b83f0bcb722cc55fdde3
+2016-10-26 12:30:38,232 INFO  [main] util.VersionInfo: Compiled by ndimiduk on Sun Aug 28 10:36:13 PDT 2016
+2016-10-26 12:30:38,234 INFO  [main] util.VersionInfo: From source with checksum aab2aadd3111734a91c00b1549a56835
+2016-10-26 12:30:40,163 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2016-10-26 12:30:40,993 INFO  [main] impl.MetricsConfig: loaded properties from hadoop-metrics2-hbase.properties
+2016-10-26 12:30:41,417 INFO  [main] impl.MetricsSystemImpl: Scheduled snapshot period at 10 second(s).
+2016-10-26 12:30:41,419 INFO  [main] impl.MetricsSystemImpl: HBase metrics system started
+2016-10-26 12:30:41,843 INFO  [main] mortbay.log: Logging to org.slf4j.impl.Log4jLoggerAdapter(org.mortbay.log) via org.mortbay.log.Slf4jLog
+2016-10-26 12:30:42,025 INFO  [main] http.HttpRequestLog: Http request log for http.requests.rest is not defined
+2016-10-26 12:30:42,097 INFO  [main] http.HttpServer: Added global filter 'safety' (class=org.apache.hadoop.hbase.http.HttpServer$QuotingInputFilter)
+2016-10-26 12:30:42,107 INFO  [main] http.HttpServer: Added filter static_user_filter (class=org.apache.hadoop.hbase.http.lib.StaticUserWebFilter$StaticUserFilter) to context rest
+2016-10-26 12:30:42,107 INFO  [main] http.HttpServer: Added filter static_user_filter (class=org.apache.hadoop.hbase.http.lib.StaticUserWebFilter$StaticUserFilter) to context static
+2016-10-26 12:30:42,112 INFO  [main] http.HttpServer: Added filter static_user_filter (class=org.apache.hadoop.hbase.http.lib.StaticUserWebFilter$StaticUserFilter) to context logs
+2016-10-26 12:30:42,123 INFO  [main] http.HttpServer: Jetty bound to port 8085
+2016-10-26 12:30:42,157 INFO  [main] mortbay.log: jetty-6.1.26
+2016-10-26 12:30:43,394 INFO  [main] mortbay.log: Started SelectChannelConnector@0.0.0.0:8085
+2016-10-26 12:30:43,396 INFO  [main] mortbay.log: jetty-6.1.26
+2016-10-26 12:30:43,410 INFO  [main] mortbay.log: Started SelectChannelConnector@0.0.0.0:8080

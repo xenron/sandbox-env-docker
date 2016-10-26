@@ -57,3 +57,12 @@ docker run -itd --name kafka2 -h kafka2 -p9093:9093 -e BROKER_ID=2 -e BROKER_POR
 docker run -itd --name kafka3 -h kafka3 -p9094:9094 -e BROKER_ID=3 -e BROKER_PORT=9094 --link zookeeper jason/kafka:0.8.2.2 bash
 ```
 
+# Kafka Cluster
+```bash
+docker-compose up -d
+```
+
+
+
+
+

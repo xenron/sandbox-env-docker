@@ -4,19 +4,55 @@
 
 # http://docs.docker.io/en/latest/use/builder/
 
-FROM ubuntu:xenial
+FROM ubuntu:14.04
 MAINTAINER Dave Beckett <dave@dajobe.org>
 
-COPY *.sh /build/
-
+ENV HBASE_DIST "http://archive.apache.org/dist/hbase"
 ENV HBASE_VERSION 1.1.6
 
-RUN /build/prepare-hbase.sh && \
-    cd /opt/hbase && /build/build-hbase.sh \
-    cd / && /build/cleanup-hbase.sh && rm -rf /build
+RUN apt-get update -y && \
+    apt-get install -y --no-install-recommends curl && \
+    apt-get install -y software-properties-common python-software-properties && \
+    add-apt-repository ppa:openjdk-r/ppa && \
+    apt-get update -y && \
+    apt-get install -y openjdk-8-jre && \
+    update-alternatives --config java && \
+    rm -rf /var/lib/apt/lists/*
 
-# VOLUME /data
-RUN mkdir /data
+WORKDIR /opt/
+
+RUN curl -SL $HBASE_DIST/$HBASE_VERSION/hbase-$HBASE_VERSION-bin.tar.gz | tar -x -z && \
+    mv hbase-${HBASE_VERSION} hbase
+
+WORKDIR /opt/hbase/
+
+# here=$(pwd)
+
+# delete files that are not needed to run hbase
+# rm -rf docs *.txt LEGAL
+# rm -f */*.cmd
+
+# Set Java home for hbase servers
+RUN sed -i "s,^. export JAVA_HOME.*,export JAVA_HOME=$JAVA_HOME," conf/hbase-env.sh
+
+# Set interactive shell defaults
+#RUN cat > /etc/profile.d/defaults.sh <<EOF \
+#    JAVA_HOME=$JAVA_HOME \
+#    export JAVA_HOME \
+#    EOF
+RUN echo "JAVA_HOME=$JAVA_HOME \
+    export JAVA_HOME" >> /etc/profile.d/defaults.sh
+
+RUN cd /usr/bin && \
+    ln -sf /opt/bin/bin/* .
+
+# RUN apt-get remove --purge -y curl apt-mark showauto
+
+# . /build/cleanup.sh
+# rm -rf /tmp/* /var/tmp/*
+
+# apt-get clean
+# rm -rf /var/lib/apt/lists/*
 
 ADD ./hbase-site.xml /opt/hbase/conf/hbase-site.xml
 
@@ -37,4 +73,6 @@ EXPOSE 2181
 # HBase Master web UI at :16010/master-status;  ZK at :16010/zk.jsp
 EXPOSE 16010
 
-CMD ["/opt/hbase-server"]
+# CMD ["/opt/hbase-server"]
+ENTRYPOINT ["sh", "/opt/hbase-server"]
+
