@@ -1,0 +1,5 @@
+docker build -t dajobe/hbase -f hbase-standalone.Dockerfile .
+docker run --name=hbase-docker -h hbase-docker -d dajobe/hbase
+
+docker build -t dajobe/hbase -f hbase-volumn.Dockerfile .
+

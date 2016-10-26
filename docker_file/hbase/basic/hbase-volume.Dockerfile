@@ -15,7 +15,8 @@ RUN /build/prepare-hbase.sh && \
     cd /opt/hbase && /build/build-hbase.sh \
     cd / && /build/cleanup-hbase.sh && rm -rf /build
 
-VOLUME /data
+# VOLUME /data
+RUN mkdir /data
 
 ADD ./hbase-site.xml /opt/hbase/conf/hbase-site.xml
 
