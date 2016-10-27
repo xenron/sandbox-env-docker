@@ -42,7 +42,7 @@ RUN echo "JAVA_HOME=$JAVA_HOME \
     export JAVA_HOME" >> /etc/profile.d/defaults.sh
 
 RUN cd /usr/bin && \
-    ln -sf /opt/bin/bin/* .
+    ln -sf /opt/hbase/bin/* .
 
 # RUN apt-get remove --purge -y curl apt-mark showauto
 
@@ -73,6 +73,6 @@ EXPOSE 2181
 # HBase Master web UI at :16010/master-status;  ZK at :16010/zk.jsp
 EXPOSE 16010
 
-# CMD ["/opt/hbase-server"]
-ENTRYPOINT ["sh", "/opt/hbase-server"]
+CMD ["/opt/hbase-server"]
+# ENTRYPOINT ["sh", "/opt/hbase-server"]
 
