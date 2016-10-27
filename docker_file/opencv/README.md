@@ -1,21 +1,21 @@
-1. Run prebuild.sh to checkout and build an archive of the OpenCV 3.1.0 source
-2. Run build.sh to build the docker image
 
-
+# Opencv 2.4
 ```bash
 # Ubuntu 14.04
-# Opencv 2.4
 docker build -t xenron/opencv:14.04-2.4 -f opencv24.Dockerfile .
 ```
 
+# Opencv 3.0
 ```bash
 # Ubuntu 14.04
-# Opencv 3.0
 docker build -t xenron/opencv:14.04-3.0 -f opencv30.Dockerfile .
 ```
 
+# Opencv 3.1
 ```bash
 # Ubuntu 14.04
-# Opencv 3.1
-docker build -t xenron/opencv:14.04-3.1 -f opencv31.Dockerfile .
+docker build -t xenron/opencv:14.04-3.1 -f opencv31-ubuntu14.04.Dockerfile .
+# Ubutnu 16.04
+# testing
+# docker build -t xenron/opencv:16.04-3.1 -f opencv31-ubuntu16.04.Dockerfile .
 ```
