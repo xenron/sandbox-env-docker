@@ -18,7 +18,7 @@ hbase shell
 hbase(main):001:0> create 'member','member_id','address','info'
 hbase(main):002:0> list
 hbase(main):003:0> describe 'member'
-hbase(main):003:0> exit
+hbase(main):004:0> exit
 ```
 ```bash
 # clean up
@@ -42,7 +42,7 @@ docker exec -it hbase-docker bash
 hbase(main):001:0> create 'member','member_id','address','info'
 hbase(main):002:0> list
 hbase(main):003:0> describe 'member'
-hbase(main):003:0> exit
+hbase(main):004:0> exit
 ```
 ```bash
 # clean up
