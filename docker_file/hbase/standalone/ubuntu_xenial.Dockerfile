@@ -4,18 +4,17 @@
 
 # http://docs.docker.io/en/latest/use/builder/
 
-FROM ubuntu:14.04
+
+FROM ubuntu:xenial
 MAINTAINER Dave Beckett <dave@dajobe.org>
 
 ENV HBASE_DIST "http://archive.apache.org/dist/hbase"
 ENV HBASE_VERSION 1.1.6
+ENV JAVA_HOME "/usr/lib/jvm/java-8-openjdk-amd64"
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends curl && \
-    apt-get install -y software-properties-common python-software-properties && \
-    add-apt-repository ppa:openjdk-r/ppa && \
-    apt-get update -y && \
-    apt-get install -y openjdk-8-jre && \
+    apt-get install -y openjdk-8-jre-headless && \
     update-alternatives --config java && \
     rm -rf /var/lib/apt/lists/*
 
@@ -44,7 +43,7 @@ RUN echo "JAVA_HOME=$JAVA_HOME \
     export JAVA_HOME" >> /etc/profile.d/defaults.sh
 
 RUN cd /usr/bin && \
-    ln -sf /opt/bin/bin/* .
+    ln -sf /opt/hbase/bin/* .
 
 # RUN apt-get remove --purge -y curl apt-mark showauto
 
@@ -75,6 +74,6 @@ EXPOSE 2181
 # HBase Master web UI at :16010/master-status;  ZK at :16010/zk.jsp
 EXPOSE 16010
 
-# CMD ["/opt/hbase-server"]
-ENTRYPOINT ["sh", "/opt/hbase-server"]
+CMD ["/opt/hbase-server"]
+# ENTRYPOINT ["sh", "/opt/hbase-server"]
 
