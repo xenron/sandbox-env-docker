@@ -10,6 +10,7 @@ MAINTAINER Dave Beckett <dave@dajobe.org>
 
 ENV HBASE_DIST "http://archive.apache.org/dist/hbase"
 ENV HBASE_VERSION 1.1.6
+ENV JAVA_HOME "/usr/lib/jvm/java-8-openjdk-amd64"
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends curl && \
