@@ -54,6 +54,8 @@ RUN cd /usr/bin && \
 # apt-get clean
 # rm -rf /var/lib/apt/lists/*
 
+RUN mkdir /data/
+
 ADD ./hbase-site.xml /opt/hbase/conf/hbase-site.xml
 
 ADD ./zoo.cfg /opt/hbase/conf/zoo.cfg
