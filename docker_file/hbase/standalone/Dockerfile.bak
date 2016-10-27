@@ -4,8 +4,7 @@
 
 # http://docs.docker.io/en/latest/use/builder/
 
-
-FROM ubuntu:xenial
+FROM ubuntu:14.04
 MAINTAINER Dave Beckett <dave@dajobe.org>
 
 ENV HBASE_DIST "http://archive.apache.org/dist/hbase"
@@ -13,7 +12,10 @@ ENV HBASE_VERSION 1.1.6
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends curl && \
-    apt-get install -y openjdk-8-jre-headless && \
+    apt-get install -y software-properties-common python-software-properties && \
+    add-apt-repository ppa:openjdk-r/ppa && \
+    apt-get update -y && \
+    apt-get install -y openjdk-8-jre && \
     update-alternatives --config java && \
     rm -rf /var/lib/apt/lists/*
 
