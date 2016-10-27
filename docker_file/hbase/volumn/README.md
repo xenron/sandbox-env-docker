@@ -1,4 +1,43 @@
-docker build -t dajobe/hbase -f hbase-volumn.Dockerfile .
-docker run --name=hbase-docker -h hbase-docker -d dajobe/hbase
+
+docker build -t dajobe/hbase .
+
+# mount a host directory to data volumn
+```bash
+# create data store folder
+mkdir data
+id=$(docker run --name=hbase-docker -h hbase-docker -d -v $PWD/data:/data dajobe/hbase)
+# create other container for hbase shell
+docker run --rm -it --link $id:hbase-docker dajobe/hbase hbase shell
+# if you don't want to create other container
+docker exec -it hbase-docker bash
+# run in docker container
+hbase shell
+```
+```bash
+# HBase Test
+hbase(main):001:0> create 'member','member_id','address','info'
+hbase(main):002:0> list
+hbase(main):003:0> describe 'member'
+hbase(main):003:0> exit
+```
+```bash
+# clean up
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+# delete temp hbase data
+# rm -rf data
+```
+
+# method-02
+```bash
+id=$(docker run --name=hbase-docker -h hbase-docker -d dajobe/hbase)
+docker run --rm -it --link $id:hbase-docker dajobe/hbase hbase shell
+docker exec -it hbase-docker bash
+```
+```bash
+# clean up
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+```
 
 
