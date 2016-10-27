@@ -9,6 +9,7 @@ MAINTAINER Dave Beckett <dave@dajobe.org>
 
 ENV HBASE_DIST "http://archive.apache.org/dist/hbase"
 ENV HBASE_VERSION 1.1.6
+ENV JAVA_HOME "/usr/lib/jvm/java-8-openjdk-amd64"
 
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends curl && \
@@ -44,7 +45,7 @@ RUN echo "JAVA_HOME=$JAVA_HOME \
     export JAVA_HOME" >> /etc/profile.d/defaults.sh
 
 RUN cd /usr/bin && \
-    ln -sf /opt/bin/bin/* .
+    ln -sf /opt/hbase/bin/* .
 
 # RUN apt-get remove --purge -y curl apt-mark showauto
 
