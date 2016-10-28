@@ -2,8 +2,8 @@
 # MyCat
 
 ```bash
-# docker build -t jason/zookeeper:3.4.6 -f basic.Dockerfile .
-# docker run -itd --name zookeeper -h zookeeper -p2181:2181 jason/zookeeper:3.4.6 bash
+docker build -t xenron/mycat -f Dockerfile .
+docker run -itd --name mycat xenron/mycat bash
 ```
 
 

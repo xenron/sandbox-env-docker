@@ -36,6 +36,7 @@ cd /opt/kafka/kafka_2.11-0.8.2.2
 ./bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic test1 --partitions 3 --replication-factor 1
 ./bin/kafka-topics.sh --zookeeper localhost:2181 --describe --topic test1
 ./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test1
+# input serval string
 ./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test1 --from-beginning
 ```
 
