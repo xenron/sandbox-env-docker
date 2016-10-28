@@ -4,7 +4,8 @@
 
 # http://docs.docker.io/en/latest/use/builder/
 
-FROM ubuntu:xenial
+# FROM ubuntu:xenial
+FROM ubuntu:16.04
 MAINTAINER Dave Beckett <dave@dajobe.org>
 
 COPY *.sh /build/
