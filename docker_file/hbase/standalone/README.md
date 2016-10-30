@@ -5,12 +5,12 @@ store data to local file system (NO HDFS)
 ```bash
 # Build docker image
 # Ubuntu 14.04
-docker build -t xenron/hbase:tandalone -f ubuntu_14.04.Dockerfile .
+docker build -t xenron/hbase:standalone -f ubuntu_14.04.Dockerfile .
 # Ubuntu 16.04
 docker build -t xenron/hbase:standalone -f ubuntu_16.04.Dockerfile .
 
 # Start container
-docker run --name=hbase-docker -h hbase-docker -d xenron/hbase
+docker run --name=hbase-docker -h hbase-docker -d xenron/hbase:standalone
 
 # Run a interactive command in the container
 docker exec -it hbase-docker bash
