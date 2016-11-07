@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+<property>
+  <name>hive.support.concurrency</name>
+  <description>Enable Hive's Table Lock Manager Service</description>
+  <value>true</value>
+</property>
+
+<property>
+  <name>hive.zookeeper.quorum</name>
+  <description>Zookeeper quorum used by Hive's Table Lock Manager</description>
+  <value>localhost</value>
+</property>
+
+</configuration>
