@@ -1,8 +1,8 @@
 FROM centos:6.6
 
-RUN mkdir /etc/yum.repos.d/backup &&\
-	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
-	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+#RUN mkdir /etc/yum.repos.d/backup &&\
+#	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
+#	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
 
 RUN yum -y install vim lsof wget tar bzip2 unzip vim-enhanced passwd sudo yum-utils hostname net-tools rsync man git make automake cmake patch logrotate python-devel libpng-devel libjpeg-devel pwgen python-pip
 
@@ -34,4 +34,5 @@ RUN unzip /opt/gradle/gradle-3.1-bin.zip -d /opt/gradle/ &&\
 	sed -i "s%^PATH.*$%&:$GRADLE_HOME/bin%g" /root/.bash_profile &&\
 	source /root/.bash_profile
 
+ENTRYPOINT ["tail -f /var/log/yum.log"]
 
