@@ -17,8 +17,8 @@ docker network ls
 docker build -t="xenron/java" -f java.Dockerfile .
 docker build -t xenron/java -f java.Dockerfile .
 
-docker run --network=rebalance_default -itd --name=kafka_test -h kafka_test xenron/java bash
-docker exec -it kafka_test bash
+docker run --network=rebalance_default -itd --name=java -h java xenron/java bash
+docker exec -it java bash
 
 
 
