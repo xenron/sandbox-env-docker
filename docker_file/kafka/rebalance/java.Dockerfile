@@ -34,5 +34,5 @@ RUN unzip /opt/gradle/gradle-3.1-bin.zip -d /opt/gradle/ &&\
 	sed -i "s%^PATH.*$%&:$GRADLE_HOME/bin%g" /root/.bash_profile &&\
 	source /root/.bash_profile
 
-ENTRYPOINT ["tail -f /var/log/yum.log"]
+CMD ["tail -f /var/log/yum.log"]
 

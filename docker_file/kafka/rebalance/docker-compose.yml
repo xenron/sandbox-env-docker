@@ -1,12 +1,5 @@
 version: '2.0'
 services:
-  test0:
-    build:
-      context: .
-      dockerfile: java.Dockerfile
-    image: jason/test
-    container_name: test0
-    hostname: test0
   zookeeper0:
     build:
       context: .
