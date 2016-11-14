@@ -27,9 +27,9 @@ RUN tar zxvf /opt/maven/apache-maven-3.3.9-bin.tar.gz -C /opt/maven &&\
 	source /root/.bash_profile
 
 RUN mkdir /opt/gradle &&\
-	wget https://services.gradle.org/distributions/gradle-3.1-all.zip -P /opt/gradle
+	wget https://services.gradle.org/distributions/gradle-3.1-bin.zip -P /opt/gradle
 
-RUN unzip /opt/gradle/gradle-3.1-all.zip -d /opt/gradle/ &&\
+RUN unzip /opt/gradle/gradle-3.1-bin.zip -d /opt/gradle/ &&\
 	GRADLE_HOME=/opt/gradle/gradle-3.1 &&\
 	sed -i "s%^PATH.*$%&:$GRADLE_HOME/bin%g" /root/.bash_profile &&\
 	source /root/.bash_profile
