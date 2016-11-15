@@ -26,6 +26,9 @@ docker network ls
 # docker run --network=rebalance_default -itd --name=java -h java xenron/java bash
 # docker exec -it java bash
 
+mvn clean compile
+mvn package -DparamFinalName=consumer
+
 java -jar kafka_consumer.jar zookeeper0:2181/kafka topic1 group1 consumer1
 java -jar kafka_consumer.jar zookeeper0:2181/kafka topic1 group1 consumer2
 java -jar kafka_consumer.jar zookeeper0:2181/kafka topic1 group1 consumer3
