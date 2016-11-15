@@ -1,10 +1,17 @@
 
 # Kafka Rebalance
 
-docker-compose stop
-docker-compose rm -f
-docker-compose build
-docker-compose up -d
+```bash
+docker-compose -f docker-compose.yml stop
+docker-compose -f docker-compose.yml rm -f
+docker-compose -f docker-compose.yml build
+docker-compose -f docker-compose.yml up -d
+# test
+docker-compose -f docker-compose-test.yml stop
+docker-compose -f docker-compose-test.yml rm -f
+docker-compose -f docker-compose-test.yml build
+docker-compose -f docker-compose-test.yml up -d
+```
 
 ```
 Creating test0
