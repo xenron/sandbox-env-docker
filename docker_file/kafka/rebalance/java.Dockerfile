@@ -40,7 +40,7 @@ RUN source /root/.bash_profile &&\
     git clone https://github.com/xenron/sandbox-da-kafka.git /opt/sandbox-da-kafka/ &&\
     cd /opt/sandbox-da-kafka &&\
     mvn clean compile &&\
-    mvn package &&\
+    mvn package -DparamFinalName=consumer &&\
     gradle idea
 
 ENTRYPOINT ["/bin/ping"]
