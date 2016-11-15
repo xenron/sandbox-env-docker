@@ -2,10 +2,10 @@ FROM centos:6.6
 
 ENV KAFKA_VERSION "0.8.2.2"
 
-RUN mkdir /etc/yum.repos.d/backup &&\
-	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
-	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo &&\
-	sed -i "s/mirrors.aliyun.com/rtp-linux.cisco.com/g" /etc/yum.repos.d/CentOS-Base.repo
+#RUN mkdir /etc/yum.repos.d/backup &&\
+#	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
+#	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo &&\
+#	sed -i "s/mirrors.aliyun.com/rtp-linux.cisco.com/g" /etc/yum.repos.d/CentOS-Base.repo
 
 RUN yum -y install nc vim lsof wget tar bzip2 unzip vim-enhanced passwd sudo yum-utils hostname net-tools rsync man git make automake cmake patch logrotate python-devel libpng-devel libjpeg-devel pwgen python-pip
 
