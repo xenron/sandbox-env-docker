@@ -36,11 +36,11 @@ RUN unzip /opt/gradle/gradle-3.1-bin.zip -d /opt/gradle/ &&\
 	source /root/.bash_profile
 
 # check source from github
-RUN git clone https://github.com/xenron/sandbox-da-kafka.git /opt/sandbox-da-kafka/ &&\
-    cd /opt/sandbox-da-kafka &&\
-    gradle idea &&\
-    mvn clean compile &&\
-    mvn package
+#RUN git clone https://github.com/xenron/sandbox-da-kafka.git /opt/sandbox-da-kafka/ &&\
+#    cd /opt/sandbox-da-kafka &&\
+#    gradle idea &&\
+#    mvn clean compile &&\
+#    mvn package
 
 ENTRYPOINT ["/bin/ping"]
 CMD ["localhost"]
