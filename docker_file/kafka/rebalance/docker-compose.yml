@@ -7,6 +7,13 @@ services:
     image: jason/test
     container_name: test0
     hostname: test0
+  test1:
+    build:
+      context: .
+      dockerfile: java.Dockerfile
+    image: jason/test
+    container_name: test1
+    hostname: test1
   zookeeper0:
     build:
       context: .
