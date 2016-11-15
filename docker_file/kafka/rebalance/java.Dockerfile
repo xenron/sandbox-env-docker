@@ -1,5 +1,6 @@
 FROM centos:6.6
 
+# switch yum repos to aliyun
 #RUN mkdir /etc/yum.repos.d/backup &&\
 #	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
 #	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
@@ -33,6 +34,13 @@ RUN unzip /opt/gradle/gradle-3.1-bin.zip -d /opt/gradle/ &&\
 	GRADLE_HOME=/opt/gradle/gradle-3.1 &&\
 	sed -i "s%^PATH.*$%&:$GRADLE_HOME/bin%g" /root/.bash_profile &&\
 	source /root/.bash_profile
+
+# check source from github
+RUN git clone https://github.com/xenron/sandbox-da-kafka.git . &&\
+    cd /opt/sandbox-da-kafka &&\
+    gradle idea &&\
+    mvn clean compile &&\
+    mvn package
 
 ENTRYPOINT ["/bin/ping"]
 CMD ["localhost"]
