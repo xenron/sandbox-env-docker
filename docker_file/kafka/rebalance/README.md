@@ -33,4 +33,5 @@ java -jar kafka_consumer.jar zookeeper0:2181/kafka topic1 group1 consumer1
 java -jar kafka_consumer.jar zookeeper0:2181/kafka topic1 group1 consumer2
 java -jar kafka_consumer.jar zookeeper0:2181/kafka topic1 group1 consumer3
 
-java -jar kafka_consumer.jar zookeeper0:2181/kafka topic1 group1 consumer1
+java -jar kafka_consumer.jar zookeeper0:2181/kafka topic1 group2 consumer1
+
