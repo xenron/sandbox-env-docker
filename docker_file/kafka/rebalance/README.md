@@ -6,32 +6,41 @@ docker-compose -f docker-compose.yml stop
 docker-compose -f docker-compose.yml rm -f
 docker-compose -f docker-compose.yml build
 docker-compose -f docker-compose.yml up -d
+
+# Creating zookeeper0
+# Creating zookeeper1
+# Creating zookeeper2
+# Creating kafka0
+# Creating kafka1
+# Creating kafka2
+
+```
+
 # test
+```
 docker-compose -f docker-compose-test.yml stop
 docker-compose -f docker-compose-test.yml rm -f
 docker-compose -f docker-compose-test.yml build
 docker-compose -f docker-compose-test.yml up -d
-```
 
-```
-Creating test0
-Creating zookeeper0
-Creating zookeeper1
-Creating zookeeper2
-Creating kafka0
-Creating kafka1
-Creating kafka2
+# Creating test0
+# Creating test1
+# Creating zookeeper0
+# Creating zookeeper1
+# Creating zookeeper2
+# Creating kafka0
+# Creating kafka1
+# Creating kafka2
 ```
 
 docker network ls
-
-docker exec -it kafka0 bash
-docker exec -it zookeeper0 bash
 
 # docker build -t="xenron/java" -f java.Dockerfile .
 # docker build -t xenron/java -f java.Dockerfile .
 # docker run --network=rebalance_default -itd --name=java -h java xenron/java bash
 # docker exec -it java bash
+
+docker exec -it zookeeper0 bash
 
 docker exec -it kafka0 bash
 source /root/.bash_profile
