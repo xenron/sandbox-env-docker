@@ -30,10 +30,13 @@ RUN echo "source /root/.bash_profile" > /opt/kafka/start.sh &&\
 	echo "[ ! -z $""BROKER_ID"" ] && sed -i 's%broker.id=.*$%broker.id='$""BROKER_ID'""%g'  /opt/kafka/kafka_2.11-"$KAFKA_VERSION"/config/server.properties" >> /opt/kafka/start.sh &&\
 	echo "[ ! -z $""BROKER_PORT"" ] && sed -i 's%port=.*$%port='$""BROKER_PORT'""%g'  /opt/kafka/kafka_2.11-"$KAFKA_VERSION"/config/server.properties" >> /opt/kafka/start.sh &&\
 	echo "sed -i 's%#advertised.host.name=.*$%advertised.host.name='$""(hostname -i)'""%g'  /opt/kafka/kafka_2.11-"$KAFKA_VERSION"/config/server.properties" >> /opt/kafka/start.sh &&\
+	echo "sed -i 's%log.retention.hours=168$%#log.retention.hours=168%g'  /opt/kafka/kafka_2.11-"$KAFKA_VERSION"/config/server.properties" >> /opt/kafka/start.sh &&\
 	echo "[ ! -z $""ADVERTISED_HOST_NAME"" ] && sed -i 's%.*advertised.host.name=.*$%advertised.host.name='$""ADVERTISED_HOST_NAME'""%g'  /opt/kafka/kafka_2.11-"$KAFKA_VERSION"/config/server.properties" >> /opt/kafka/start.sh &&\
 	echo "sed -i 's%#host.name=.*$%host.name='$""(hostname -i)'""%g'  /opt/kafka/kafka_2.11-"$KAFKA_VERSION"/config/server.properties" >> /opt/kafka/start.sh &&\
 	echo "[ ! -z $""HOST_NAME"" ] && sed -i 's%.*host.name=.*$%host.name='$""HOST_NAME'""%g'  /opt/kafka/kafka_2.11-"$KAFKA_VERSION"/config/server.properties" >> /opt/kafka/start.sh &&\
 	echo "delete.topic.enable=true" >> /opt/kafka/kafka_2.11-$KAFKA_VERSION/config/server.properties &&\
+	echo "log.cleanup.policy=compact" >> /opt/kafka/kafka_2.11-$KAFKA_VERSION/config/server.properties &&\
+	echo "log.retention.ms=500" >> /opt/kafka/kafka_2.11-$KAFKA_VERSION/config/server.properties &&\
 	echo "bin/kafka-server-start.sh config/server.properties" >> /opt/kafka/start.sh &&\
 	chmod a+x /opt/kafka/start.sh
 
@@ -44,3 +47,4 @@ EXPOSE 9092
 WORKDIR /opt/kafka/kafka_2.11-$KAFKA_VERSION
 
 ENTRYPOINT ["sh", "/opt/kafka/start.sh"]
+
