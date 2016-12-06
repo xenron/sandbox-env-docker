@@ -4,6 +4,8 @@ MAINTAINER caffe-maint@googlegroups.com
 
 ENV BASEPATH="/opt"
 
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         linux-generic \
@@ -26,7 +28,7 @@ RUN curl -s https://raw.githubusercontent.com/torch/ezinstall/master/install-dep
 # and enter "yes" at the end to modify your bashrc
 RUN git clone https://github.com/torch/distro.git /opt/torch --recursive && \
     cd /opt/torch && \
-    sed -i 's/read input$/input=""/g' install.sh && \
+    sed -i 's/read input/input=$DEFAULT/g' /opt/torch/install.sh && \
     ./install.sh && \
     source ~/.bashrc
 
@@ -62,3 +64,4 @@ RUN th train.lua -gpuid -1 && \
     th train.lua -data_dir data/some_folder -rnn_size 512 -num_layers 2 -dropout 0.5 && \
     th sample.lua cv/some_checkpoint.t7 -gpuid -1 && \
     th convert_gpu_cpu_checkpoint.lua cv/lm_lstm_epoch30.00_1.3950.t7
+
