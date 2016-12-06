@@ -1,7 +1,10 @@
 # hadoop-docker
 
-docker pull krejcmat/hadoop-master:latest
-docker pull krejcmat/hadoop-slave:latest
+$ ./build-image-root.sh hadoop-dnsmasq
 
-bash start-container.sh latest 2
+$ ./start-container.sh latest 3
+
+# start master container...
+# start slave1 container...
+
 
