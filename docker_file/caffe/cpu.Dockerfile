@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         cmake \
         git \
         wget \
+        ssh \
         libatlas-base-dev \
         libboost-all-dev \
         libgflags-dev \
