@@ -1,3 +1,4 @@
+# Debian/GNU Linux
 FROM philcryer/min-wheezy:latest
 MAINTAINER krejcmat <matejkrejci@gmail.com>
 
