@@ -31,3 +31,4 @@ docker rmi krejcmat/hadoop-master:$tag
 # rebuild hadoop-docker image
 pwd
 docker build -t krejcmat/hadoop-master:$tag .
+

@@ -5,7 +5,8 @@ MAINTAINER krejcmat <matejkrejci@gmail.com>
 ADD files/* /usr/local/  
 
 #install hbase 
-RUN wget -q -o out.log -P /tmp http://www.eu.apache.org/dist/hbase/1.1.3/hbase-1.1.3-bin.tar.gz && \
+# RUN wget -q -o out.log -P /tmp http://www.eu.apache.org/dist/hbase/1.1.3/hbase-1.1.3-bin.tar.gz && \
+RUN wget -q -o out.log -P /tmp https://archive.apache.org/dist/hbase/1.1.3/hbase-1.1.3-bin.tar.gz && \
 tar xzf /tmp/hbase-1.1.3-bin.tar.gz -C /usr/local && \
 rm /tmp/hbase-1.1.3-bin.tar.gz  && \
 mv /usr/local/hbase-1.1.3 /usr/local/hbase && \
