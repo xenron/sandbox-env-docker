@@ -43,7 +43,8 @@ RUN cd /opt/ && \
 
 RUN sudo apt-get update && \
     sudo apt-get install cuda && \
-    echo "export PATH=/usr/local/cuda/bin/:\$PATH; export LD_LIBRARY_PATH=/usr/local/cuda/lib64/:\$LD_LIBRARY_PATH; " >>~/.bashrc && source ~/.bashrc
+    echo "export PATH=/usr/local/cuda/bin/:\$PATH; export LD_LIBRARY_PATH=/usr/local/cuda/lib64/:\$LD_LIBRARY_PATH; " >>~/.bashrc && \
+    source ~/.bashrc
 
 RUN luarocks install cutorch && \
     luarocks install cunn
