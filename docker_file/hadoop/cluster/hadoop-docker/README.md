@@ -35,8 +35,38 @@ docker-compose -f docker-compose-hadoop.yml exec hadoop-master stop-yarn.sh
 # 停止HDFS
 docker-compose -f docker-compose-hadoop.yml exec hadoop-master stop-dfs.sh
 
-# 停止容器
+# stop container
 docker-compose -f docker-compose-hadoop.yml stop
+# delete container
+docker-compose -f docker-compose-hadoop.yml rm
+```
+
+
+# Hive集群
+
+```bash
+# 启动容器
+docker-compose -f docker-compose-hive.yml up -d
+
+# 第一次启动集群时，需要格式化namenode
+docker-compose -f docker-compose-hive.yml exec hive-master hdfs namenode -format
+
+# 启动集群进程
+# 启动HDFS
+docker-compose -f docker-compose-hive.yml exec hive-master start-dfs.sh
+# 启动YARN
+docker-compose -f docker-compose-hive.yml exec hive-master start-yarn.sh
+
+# 停止Hadoop集群
+# 停止YARN
+docker-compose -f docker-compose-hive.yml exec hive-master stop-yarn.sh
+# 停止HDFS
+docker-compose -f docker-compose-hive.yml exec hive-master stop-dfs.sh
+
+# stop container
+docker-compose -f docker-compose-hive.yml stop
+# delete container
+docker-compose -f docker-compose-hive.yml rm
 ```
 
 # Spark集群

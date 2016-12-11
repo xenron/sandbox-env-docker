@@ -19,7 +19,7 @@ services:
   zookeeper:
     build: ./zk-docker
     image: twinsen/zookeeper:3.4.8
-    
+
   hbase:
     build: ./hbase-docker
     image: twinsen/hbase:1.2.2
