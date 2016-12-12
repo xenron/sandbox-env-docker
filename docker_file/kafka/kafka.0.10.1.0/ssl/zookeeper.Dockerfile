@@ -17,9 +17,13 @@ RUN tar zxvf /opt/java/jdk-8u102-linux-x64.tar.gz -C /opt/java &&\
 	source /root/.bash_profile
 
 ENV ZOOKEEPER_VERSION "3.4.8"
+# ENV ZOOKEEPER_DOWNLOAD_SITE http://mirror.olnevhost.net/pub/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz
+ENV ZOOKEEPER_DOWNLOAD_SITE https://archive.apache.org/dist/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/zookeeper-${ZOOKEEPER_VERSION}.tar.gz
 
+# RUN mkdir /opt/zookeeper &&\
+# 	wget http://mirror.olnevhost.net/pub/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz -P /opt/zookeeper
 RUN mkdir /opt/zookeeper &&\
-	wget http://mirror.olnevhost.net/pub/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz -P /opt/zookeeper
+	wget ${ZOOKEEPER_DOWNLOAD_SITE} -P /opt/zookeeper
 
 RUN tar zxvf /opt/zookeeper/zookeeper*.tar.gz -C /opt/zookeeper
 
