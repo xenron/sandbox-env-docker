@@ -11,7 +11,7 @@ docker-compose up -d
 docker-compose stop
 docker-compose rm -f
 docker rmi jason/kafka:0.10.1.0
-docker rmi jason/zookeeper:3.4.6
+docker rmi jason/zookeeper:3.4.8
 docker rmi jason/kafka-manager:1.0
 ```
 
