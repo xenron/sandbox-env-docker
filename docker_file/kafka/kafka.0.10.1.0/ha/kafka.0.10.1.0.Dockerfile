@@ -5,6 +5,10 @@ FROM centos:6.6
 # 	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
 #	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
 
+ENV KAFKA_VERSION "0.10.1.0"
+# ENV KAFKA_DOWNLOAD_SITE http://apache.fayea.com/kafka/$KAFKA_VERSION/kafka_2.11-${KAFKA_VERSION}.tgz
+ENV KAFKA_DOWNLOAD_SITE https://archive.apache.org/dist/kafka/$KAFKA_VERSION/kafka_2.11-${KAFKA_VERSION}.tgz
+
 RUN yum -y install vim lsof wget tar bzip2 unzip vim-enhanced passwd sudo yum-utils hostname net-tools rsync man git make automake cmake patch logrotate python-devel libpng-devel libjpeg-devel pwgen python-pip
 
 RUN mkdir /opt/java &&\
@@ -12,8 +16,8 @@ RUN mkdir /opt/java &&\
 
 ENV KAFKA_VERSION "0.10.1.0"
 
-RUN mkdir /opt/kafka &&\
-	wget http://apache.fayea.com/kafka/$KAFKA_VERSION/kafka_2.11-$KAFKA_VERSION.tgz -P /opt/kafka
+RUN mkdir /opt/kafka && \
+	wget ${KAFKA_DOWNLOAD_SITE} -P /opt/kafka
 
 RUN tar zxvf /opt/java/jdk-8u102-linux-x64.tar.gz -C /opt/java &&\
 	JAVA_HOME=/opt/java/jdk1.8.0_102 &&\
