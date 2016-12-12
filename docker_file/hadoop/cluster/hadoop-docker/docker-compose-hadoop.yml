@@ -11,7 +11,7 @@ services:
     networks:
       - hadoop
     tty: true
-  
+
   hadoop-slave2:
     build: ./hadoop-docker/2.7.2
     image: twinsen/hadoop:2.7.2
@@ -23,7 +23,7 @@ services:
     networks:
       - hadoop
     tty: true
-      
+
   hadoop-slave3:
     build: ./hadoop-docker/2.7.2
     image: twinsen/hadoop:2.7.2

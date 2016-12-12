@@ -13,7 +13,7 @@ services:
         aliases: 
           - hadoop-slave1
     tty: true
-  
+
   spark-slave2:
     image: twinsen/spark:1.6.2
     container_name: spark-slave2

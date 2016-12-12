@@ -48,6 +48,7 @@ cd /opt/kafka/kafka_2.11-0.8.2.2
 ./bin/kafka-topics.sh --zookeeper zookeeper0:2181/kafka --create --topic topic1 --partitions 3 --replication-factor 1
 ./bin/kafka-topics.sh --zookeeper zookeeper0:2181/kafka --describe --topic topic1
 ./bin/kafka-console-producer.sh --broker-list kafka0:9092 --topic topic1
+./bin/kafka-console-consumer.sh --zookeeper zookeeper0:2181 --topic test1
 
 mvn clean compile
 mvn package -DparamFinalName=kafka_consumer

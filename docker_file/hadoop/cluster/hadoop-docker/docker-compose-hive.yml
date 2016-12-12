@@ -1,0 +1,61 @@
+version: '2'
+services:
+  hive-slave1:
+    build: ./hive-docker/1.1.1
+    image: twinsen/hive:1.1.1
+    container_name: hive-slave1
+    volumes:
+      - "./volume/hive/work/slave1:/works"
+      - "./volume/hive/logs/slave1:/root/hive/logs/"
+    hostname: hive-slave1
+    networks:
+      - hive
+    tty: true
+
+  hive-slave2:
+    build: ./hive-docker/1.1.1
+    image: twinsen/hive:1.1.1
+    container_name: hive-slave2
+    volumes:
+      - "./volume/hive/work/slave2:/works"
+      - "./volume/hive/logs/slave2:/root/hive/logs/"
+    hostname: hive-slave2
+    networks:
+      - hive
+    tty: true
+
+  hive-slave3:
+    build: ./hive-docker/1.1.1
+    image: twinsen/hive:1.1.1
+    container_name: hive-slave3
+    volumes:
+      - "./volume/hive/work/slave3:/works"
+      - "./volume/hive/logs/slave3:/root/hive/logs/"
+    hostname: hive-slave3
+    networks:
+      - hive
+    tty: true  
+
+  hive-master:
+    build: ./hive-docker/1.1.1
+    image: twinsen/hive:1.1.1
+    ports:
+      - "50070:50070"
+      - "8088:8088"
+    volumes:
+      - "./volume/hive/work/master:/works"
+      - "./volume/hive/logs/master:/root/hive/logs/"
+      - "./volume/code:/code"
+      - "./scripts:/root/scripts:ro"
+    container_name: hive-master
+    hostname: hive-master
+    links:
+      - hive-slave1
+      - hive-slave2
+      - hive-slave3      
+    networks:
+      - hive
+    tty: true
+
+networks:
+  hive:
