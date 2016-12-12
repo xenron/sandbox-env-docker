@@ -1,3 +1,10 @@
-可通过如下命令导入网盘中的docker image
+
 bzip2 -d -c < kafka.0.8.2.2.tar.bz2 | docker load
 bzip2 -d -c < zookeeper.3.4.6.tar.bz2 | docker load
+
+docker-compose build
+docker-compose up -d
+docker-compose stop
+docker-compose rm -f
+
+

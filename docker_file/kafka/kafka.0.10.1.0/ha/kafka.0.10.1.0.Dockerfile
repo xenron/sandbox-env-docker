@@ -1,8 +1,9 @@
 FROM centos:6.6
 
-RUN mkdir /etc/yum.repos.d/backup &&\
-	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
-	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+# aliyun repo
+# RUN mkdir /etc/yum.repos.d/backup &&\
+# 	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
+#	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
 
 RUN yum -y install vim lsof wget tar bzip2 unzip vim-enhanced passwd sudo yum-utils hostname net-tools rsync man git make automake cmake patch logrotate python-devel libpng-devel libjpeg-devel pwgen python-pip
 
