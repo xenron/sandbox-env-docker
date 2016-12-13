@@ -17,7 +17,7 @@ FROM jason/base:latest
 #	sed -i "s%^PATH.*$%&:$JAVA_HOME/bin%g" /root/.bash_profile &&\
 #	source /root/.bash_profile
 
-ENV ZOOKEEPER_VERSION "3.4.6"
+ENV ZOOKEEPER_VERSION "3.4.8"
 # ENV ZOOKEEPER_DOWNLOAD_SITE http://mirror.olnevhost.net/pub/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz
 ENV ZOOKEEPER_DOWNLOAD_SITE https://archive.apache.org/dist/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/zookeeper-${ZOOKEEPER_VERSION}.tar.gz
 
@@ -33,20 +33,9 @@ RUN echo "source /root/.bash_profile" > /opt/zookeeper/start.sh &&\
 	echo "[[ ! -z $""ZOOKEEPER_SERVERS"" ]] && for server in $""ZOOKEEPER_SERVERS""; do echo $""server"" >> /opt/zookeeper/zookeeper-"$ZOOKEEPER_VERSION"/conf/zoo.cfg; done" >> /opt/zookeeper/start.sh &&\
 	echo "/opt/zookeeper/zookeeper-$"ZOOKEEPER_VERSION"/bin/zkServer.sh start-foreground" >> /opt/zookeeper/start.sh
 
-# RUN yum install -y nc
-
 EXPOSE 2181
 
 WORKDIR /opt/zookeeper/zookeeper-$ZOOKEEPER_VERSION
 
 ENTRYPOINT ["sh", "/opt/zookeeper/start.sh"]
-
-
-
-
-
-
-
-
-
 

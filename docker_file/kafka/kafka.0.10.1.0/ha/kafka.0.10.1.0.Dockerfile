@@ -15,8 +15,6 @@ ENV KAFKA_DOWNLOAD_SITE https://archive.apache.org/dist/kafka/$KAFKA_VERSION/kaf
 # RUN mkdir /opt/java &&\
 # 	wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.tar.gz -P /opt/java
 
-ENV KAFKA_VERSION "0.10.1.0"
-
 RUN mkdir /opt/kafka && \
 	wget ${KAFKA_DOWNLOAD_SITE} -P /opt/kafka
 
@@ -41,10 +39,9 @@ RUN echo "source /root/.bash_profile" > /opt/kafka/start.sh &&\
 	echo "bin/kafka-server-start.sh config/server.properties" >> /opt/kafka/start.sh &&\
 	chmod a+x /opt/kafka/start.sh
 
-# RUN yum install -y nc
-
 EXPOSE 9092
 
 WORKDIR /opt/kafka/kafka_2.11-$KAFKA_VERSION
 
 ENTRYPOINT ["sh", "/opt/kafka/start.sh"]
+
