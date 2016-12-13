@@ -1,14 +1,15 @@
-FROM centos:6.6
+# FROM centos:6.6
+FROM jason/base:latest
 
 # aliyun repo
 # RUN mkdir /etc/yum.repos.d/backup &&\
 # 	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
 # 	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
 
-RUN yum -y install nc vim lsof wget tar bzip2 unzip vim-enhanced passwd sudo yum-utils hostname net-tools rsync man git make automake cmake patch logrotate python-devel libpng-devel libjpeg-devel pwgen python-pip
+# RUN yum -y install nc vim lsof wget tar bzip2 unzip vim-enhanced passwd sudo yum-utils hostname net-tools rsync man git make automake cmake patch logrotate python-devel libpng-devel libjpeg-devel pwgen python-pip
 
-RUN mkdir /opt/java &&\
-	wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.tar.gz -P /opt/java
+# RUN mkdir /opt/java &&\
+#	wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.tar.gz -P /opt/java
 
 ENV KAFKA_VERSION "0.10.1.0"
 # ENV KAFKA_DOWNLOAD_SITE http://apache.fayea.com/kafka/$KAFKA_VERSION/kafka_2.11-${KAFKA_VERSION}.tgz
@@ -38,3 +39,4 @@ EXPOSE 9092
 WORKDIR /opt/kafka/kafka_2.11-$KAFKA_VERSION
 
 ENTRYPOINT ["sh", "/opt/kafka/start_kafka.sh"]
+
