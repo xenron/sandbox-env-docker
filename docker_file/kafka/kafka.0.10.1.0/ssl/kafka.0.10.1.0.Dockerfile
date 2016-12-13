@@ -20,12 +20,12 @@ ENV KAFKA_DOWNLOAD_SITE https://archive.apache.org/dist/kafka/$KAFKA_VERSION/kaf
 RUN mkdir /opt/kafka && \
 	wget ${KAFKA_DOWNLOAD_SITE} -P /opt/kafka
 
-ENV JAVA_HOME "/opt/java/jdk1.8.0_102"
+# ENV JAVA_HOME "/opt/java/jdk1.8.0_102"
 
-RUN tar zxvf /opt/java/jdk-8u102-linux-x64.tar.gz -C /opt/java &&\
-	sed -i "/^PATH/i export JAVA_HOME="$JAVA_HOME /root/.bash_profile &&\
-	sed -i "s%^PATH.*$%&:"$JAVA_HOME"/bin%g" /root/.bash_profile &&\
-	source /root/.bash_profile
+#RUN tar zxvf /opt/java/jdk-8u102-linux-x64.tar.gz -C /opt/java &&\
+#	sed -i "/^PATH/i export JAVA_HOME="$JAVA_HOME /root/.bash_profile &&\
+#	sed -i "s%^PATH.*$%&:"$JAVA_HOME"/bin%g" /root/.bash_profile &&\
+#	source /root/.bash_profile
 
 RUN tar zxvf /opt/kafka/kafka*.tgz -C /opt/kafka &&\
 	sed -i 's/num.partitions.*$/num.partitions=3/g' /opt/kafka/kafka_2.11-$KAFKA_VERSION/config/server.properties

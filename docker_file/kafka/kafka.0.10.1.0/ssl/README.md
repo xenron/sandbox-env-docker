@@ -12,7 +12,6 @@ docker-compose stop
 docker-compose rm -f
 docker rmi jason/kafka:0.10.1.0
 docker rmi jason/zookeeper:3.4.8
-docker rmi jason/kafka-manager:1.0
 ```
 
 
@@ -20,16 +19,16 @@ docker rmi jason/kafka-manager:1.0
 source /root/.bash_profile
 
 # create topic
-./bin/kafka-topics.sh -zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 -topic test1 -replication-factor 2 -partitions 3 -create
+./bin/kafka-topics.sh --zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 --topic test1 --replication-factor 2 --partitions 3 --create
 
 # list topic
-./bin/kafka-topics.sh -zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 -list
+./bin/kafka-topics.sh --zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 --list
 
 # producer console
-./bin/kafka-console-producer.sh -broker-list kafka0:19092,kafka1:19093,kafka2:19094 -topic test1
+./bin/kafka-console-producer.sh --broker-list kafka0:19092,kafka1:19093,kafka2:19094 --topic test1
 
 # consumer console
-./bin/kafka-console-consumer.sh -zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 - from-begining -topic test1
+./bin/kafka-console-consumer.sh --zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 --topic test1 --from-begining
 ```
 
 ZOOKEEPER_CONNECT: zookeeper0:12181,zookeeper1:12182,zookeeper2:12183/kafka
