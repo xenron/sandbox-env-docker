@@ -28,7 +28,7 @@ source /root/.bash_profile
 ./bin/kafka-console-producer.sh --broker-list kafka0:19092,kafka1:19093,kafka2:19094 --topic test1
 
 # consumer console
-./bin/kafka-console-consumer.sh --zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 --topic test1 --from-begining
+./bin/kafka-console-consumer.sh --zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 --topic test1 --from-beginning
 ```
 
 ZOOKEEPER_CONNECT: zookeeper0:12181,zookeeper1:12182,zookeeper2:12183/kafka
