@@ -62,7 +62,7 @@ ssl.truststore.location=/opt/kafka/ssl/"$HOSTNAME".truststore.jks
 ssl.truststore.password="$ssl_password"
 ssl.keystore.location=/opt/kafka/ssl/"$HOSTNAME".keystore.jks
 ssl.keystore.password="$ssl_password"
-ssl.key.password="$ssl_password >> /opt/kafka/client.propertiess
+ssl.key.password="$ssl_password >> /opt/kafka/client.properties
 fi
 
 
