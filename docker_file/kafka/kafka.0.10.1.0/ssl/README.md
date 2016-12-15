@@ -28,11 +28,16 @@ source /root/.bash_profile
 
 # producer console
 ./bin/kafka-console-producer.sh --broker-list kafka0:19092,kafka1:19093,kafka2:19094 --topic test1
+# ssl
+./bin/kafka-console-producer.sh --broker-list kafka0:29092,kafka1:29093,kafka2:29094 --topic test1 --producer.config client-ssl.properties
+
 
 # consumer console
 # ./bin/kafka-console-consumer.sh --zookeeper zookeeper0:12181/kafka,zookeeper1:12182/kafka,zookeeper2:12183/kafka --topic test1 --from-beginning
-./bin/kafka-console-consumer.sh --bootstrap-server kafka0:19092 --topic test1 --new-consumer
-./bin/kafka-console-consumer.sh --bootstrap-server kafka1:19093 --topic test1 --new-consumer
+./bin/kafka-console-consumer.sh --bootstrap-server kafka0:19092 --topic test1 --new-consumer --from-beginning
+./bin/kafka-console-consumer.sh --bootstrap-server kafka1:19093 --topic test1 --new-consumer --from-beginning
+# ssl
+./bin/kafka-console-consumer.sh --bootstrap-server kafka1:29093 --topic test1 --new-consumer --from-beginning --consumer.config client-ssl.properties
 ```
 
 ZOOKEEPER_CONNECT: zookeeper0:12181,zookeeper1:12182,zookeeper2:12183/kafka
