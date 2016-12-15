@@ -19,16 +19,20 @@ docker rmi jason/zookeeper:3.4.8
 source /root/.bash_profile
 
 # create topic
-./bin/kafka-topics.sh --zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 --topic test1 --replication-factor 2 --partitions 3 --create
+# ./bin/kafka-topics.sh --zookeeper zookeeper0:12181/kafka,zookeeper1:12182/kafka,zookeeper2:12183/kafka --topic test1 --replication-factor 2 --partitions 3 --create
+./bin/kafka-topics.sh --zookeeper zookeeper0:12181/kafka --topic test1 --replication-factor 2 --partitions 3 --create
 
 # list topic
-./bin/kafka-topics.sh --zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 --list
+# ./bin/kafka-topics.sh --zookeeper zookeeper0:12181/kafka,zookeeper1:12182/kafka,zookeeper2:12183/kafka --list
+./bin/kafka-topics.sh --zookeeper zookeeper0:12181/kafka --list
 
 # producer console
 ./bin/kafka-console-producer.sh --broker-list kafka0:19092,kafka1:19093,kafka2:19094 --topic test1
 
 # consumer console
-./bin/kafka-console-consumer.sh --zookeeper zookeeper0:12181,zookeeper1:12182,zookeeper2:12183 --topic test1 --from-beginning
+# ./bin/kafka-console-consumer.sh --zookeeper zookeeper0:12181/kafka,zookeeper1:12182/kafka,zookeeper2:12183/kafka --topic test1 --from-beginning
+./bin/kafka-console-consumer.sh --bootstrap-server kafka0:19092 --topic test1 --new-consumer
+./bin/kafka-console-consumer.sh --bootstrap-server kafka1:19093 --topic test1 --new-consumer
 ```
 
 ZOOKEEPER_CONNECT: zookeeper0:12181,zookeeper1:12182,zookeeper2:12183/kafka

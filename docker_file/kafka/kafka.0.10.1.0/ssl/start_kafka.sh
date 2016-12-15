@@ -35,7 +35,6 @@ then
 	
 	keytool -v -keystore ssl/$HOSTNAME.truststore.jks -alias CARoot -import -file ca/ca.crt -storepass $ssl_password <<EOF
 	y
-
 EOF
 	
 	keytool -keystore ssl/$HOSTNAME.keystore.jks -alias $HOSTNAME -certreq -file ssl/$HOSTNAME.crt -storepass $ssl_password
@@ -86,3 +85,5 @@ popd
 
 cd $KAFKA_HOME
 bin/kafka-server-start.sh config/server.properties
+
+
