@@ -1,4 +1,4 @@
-FROM xenron/python:27
+FROM xenron/python:python27
 
 MAINTAINER Julien Maupetit <julien@tailordev.fr>
 
