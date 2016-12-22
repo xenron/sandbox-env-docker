@@ -9,9 +9,11 @@ RUN yum -y install vim lsof wget tar bzip2 unzip vim-enhanced passwd sudo yum-ut
 RUN mkdir /opt/java &&\
 	wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.tar.gz -P /opt/java
 
+ENV SCALA_VERSION "2.11"
 ENV KAFKA_VERSION "0.10.1.0"
+ENV KAFKA_NAME kafka_${SCALA_VERSION}-${KAFKA_VERSION}
 # ENV KAFKA_DOWNLOAD_SITE http://apache.fayea.com/kafka/$KAFKA_VERSION/kafka_2.11-${KAFKA_VERSION}.tgz
-ENV KAFKA_DOWNLOAD_SITE https://archive.apache.org/dist/kafka/$KAFKA_VERSION/kafka_2.11-${KAFKA_VERSION}.tgz
+ENV KAFKA_DOWNLOAD_SITE https://archive.apache.org/dist/kafka/${KAFKA_VERSION}/${KAFKA_NAME}.tgz
 
 RUN mkdir /opt/kafka && \
 	wget ${KAFKA_DOWNLOAD_SITE} -P /opt/kafka
@@ -24,15 +26,15 @@ RUN tar zxvf /opt/java/jdk-8u102-linux-x64.tar.gz -C /opt/java &&\
 	source /root/.bash_profile
 
 RUN tar zxvf /opt/kafka/kafka*.tgz -C /opt/kafka &&\
-	sed -i 's/num.partitions.*$/num.partitions=3/g' /opt/kafka/kafka_2.11-$KAFKA_VERSION/config/server.properties
+	sed -i 's/num.partitions.*$/num.partitions=3/g' /opt/kafka/${KAFKA_NAME}/config/server.properties
 
-RUN sed -i '0,/^if/s%^if%export JAVA_HOME='$JAVA_HOME'\nexport PATH=$PATH:$JAVA_HOME/bin\nif%' /opt/kafka/kafka_2.11-0.10.1.0/bin/kafka-run-class.sh
+RUN sed -i '0,/^if/s%^if%export JAVA_HOME='$JAVA_HOME'\nexport PATH=$PATH:$JAVA_HOME/bin\nif%' /opt/kafka/${KAFKA_NAME}/bin/kafka-run-class.sh
 
 COPY start_kafka.sh /opt/kafka
 
 EXPOSE 9092
 
-WORKDIR /opt/kafka/kafka_2.11-$KAFKA_VERSION
+WORKDIR /opt/kafka/${KAFKA_NAME}
 
 ENTRYPOINT ["sh", "/opt/kafka/start_kafka.sh"]
 
