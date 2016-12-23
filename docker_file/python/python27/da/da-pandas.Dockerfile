@@ -10,6 +10,6 @@ RUN apt-get update && \
 
 RUN mkdir -p /opt/pandas/build/
 
-COPY requirements.txt /opt/pandas/build/requirements.txt
+COPY requirements-pandas.txt /opt/pandas/build/requirements.txt
 
 RUN pip install -r /opt/pandas/build/requirements.txt
