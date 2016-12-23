@@ -5,6 +5,7 @@
 #
 
 FROM buildpack-deps:jessie
+# FROM xenron/debian
 
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH

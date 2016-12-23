@@ -1,14 +1,14 @@
-# Python 2.7
+# Python 3.5
 
 ```bash
 
 docker build -t xenron/debian -f debian.Dockerfile .
 
-docker build -t xenron/python:27 -f python.Dockerfile .
+docker build -t xenron/python:python35 -f python.Dockerfile .
 
-docker run -itd --name python27 -h caffe xenron/python:27 bash
+docker run -itd --name python35 -h python35 xenron/python:python35 bash
 
-docker exec -it python27 bash
+docker exec -it python35 bash
 
 ```
 
