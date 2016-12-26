@@ -23,10 +23,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-dev \
         python-numpy \
         python-pip \
-        python-scipy && \
-        python-opencv && \
-        tkinter && \
-    rm -rf /var/lib/apt/lists/*
+        python-scipy \
+        python-tk \
+        python-skimage \
+        python-opencv
+#    rm -rf /var/lib/apt/lists/*
 
 # ENV CAFFE_ROOT=/opt/caffe
 # WORKDIR $CAFFE_ROOT
@@ -42,8 +43,9 @@ RUN git clone https://github.com/RiweiChen/DeepFace.git && \
     cd caffe-local && \
     cp Makefile.config.example Makefile.config && \
     sed -i 's/# CPU_ONLY := 1$/CPU_ONLY := 1/g' Makefile.config && \
+    pip install --upgrade pip && \
     for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
-    pip install scikit-image && \
+#    pip install scikit-image && \
     make && \
     make pycaffe
     # cmake -DCPU_ONLY=1 .. && \
