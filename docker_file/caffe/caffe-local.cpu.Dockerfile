@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ssh \
         unzip \
+        vim \
         libatlas-base-dev \
         libboost-all-dev \
         libgflags-dev \
@@ -26,7 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-scipy \
         python-tk \
         python-skimage \
-        python-opencv
+        python-opencv && \
     rm -rf /var/lib/apt/lists/*
 
 # ENV CAFFE_ROOT=/opt/caffe
