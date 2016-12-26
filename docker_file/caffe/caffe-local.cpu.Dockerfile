@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-tk \
         python-skimage \
         python-opencv
-#    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/*
 
 # ENV CAFFE_ROOT=/opt/caffe
 # WORKDIR $CAFFE_ROOT
@@ -59,6 +59,4 @@ RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
 
 # WORKDIR /workspace
 WORKDIR /opt
-
-
 
