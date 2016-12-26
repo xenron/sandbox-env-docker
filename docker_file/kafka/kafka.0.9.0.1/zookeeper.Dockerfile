@@ -1,8 +1,8 @@
 FROM centos:6.6
 
-RUN mkdir /etc/yum.repos.d/backup &&\
-	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
-	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
+# RUN mkdir /etc/yum.repos.d/backup &&\
+#	mv /etc/yum.repos.d/*.repo /etc/yum.repos.d/backup/ &&\
+#	curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-6.repo
 
 RUN yum -y install vim lsof wget tar bzip2 unzip vim-enhanced passwd sudo yum-utils hostname net-tools rsync man git make automake cmake patch logrotate python-devel libpng-devel libjpeg-devel pwgen python-pip
 
@@ -16,9 +16,12 @@ RUN tar zxvf /opt/java/jdk-8u102-linux-x64.tar.gz -C /opt/java &&\
 	source /root/.bash_profile
 
 ENV ZOOKEEPER_VERSION "3.4.6"
+ENV ZOOKEEPER_DOWNLOAD_SITE https://archive.apache.org/dist/zookeeper/zookeeper-${ZOOKEEPER_VERSION}/zookeeper-${ZOOKEEPER_VERSION}.tar.gz
 
-RUN mkdir /opt/zookeeper &&\
-	wget http://mirror.olnevhost.net/pub/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz -P /opt/zookeeper
+# RUN mkdir /opt/zookeeper && \
+#	wget http://mirror.olnevhost.net/pub/apache/zookeeper/zookeeper-$ZOOKEEPER_VERSION/zookeeper-$ZOOKEEPER_VERSION.tar.gz -P /opt/zookeeper
+RUN mkdir /opt/zookeeper && \
+	wget ${ZOOKEEPER_DOWNLOAD_SITE} -P /opt/zookeeper
 
 RUN tar zxvf /opt/zookeeper/zookeeper*.tar.gz -C /opt/zookeeper
 
@@ -36,13 +39,5 @@ EXPOSE 2181
 WORKDIR /opt/zookeeper/zookeeper-$ZOOKEEPER_VERSION
 
 ENTRYPOINT ["sh", "/opt/zookeeper/start.sh"]
-
-
-
-
-
-
-
-
 
 
