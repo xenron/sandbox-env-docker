@@ -10,9 +10,12 @@ RUN mkdir /opt/java &&\
 	wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.tar.gz -P /opt/java
 
 ENV KAFKA_VERSION "0.8.2.2"
+ENV KAFKA_DOWNLOAD_SITE https://archive.apache.org/dist/kafka/$KAFKA_VERSION/kafka_2.11-${KAFKA_VERSION}.tgz
 
-RUN mkdir /opt/kafka &&\
-	wget http://apache.fayea.com/kafka/$KAFKA_VERSION/kafka_2.11-$KAFKA_VERSION.tgz -P /opt/kafka
+# RUN mkdir /opt/kafka &&\
+#	wget http://apache.fayea.com/kafka/$KAFKA_VERSION/kafka_2.11-$KAFKA_VERSION.tgz -P /opt/kafka
+RUN mkdir /opt/kafka && \
+	wget ${KAFKA_DOWNLOAD_SITE} -P /opt/kafka
 
 RUN tar zxvf /opt/java/jdk-8u102-linux-x64.tar.gz -C /opt/java &&\
 	JAVA_HOME=/opt/java/jdk1.8.0_102 &&\
