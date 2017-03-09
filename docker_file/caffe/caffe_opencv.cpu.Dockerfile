@@ -23,7 +23,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-numpy \
         python-pip \
         python-scipy && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    python -m pip install -U pip
 
 # OpenCV
 RUN cd /opt && \
