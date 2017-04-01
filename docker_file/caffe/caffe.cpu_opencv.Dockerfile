@@ -26,6 +26,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     rm -rf /var/lib/apt/lists/*
 
 # OpenCV
+RUN apt-get purge -y libopencv*
+
 RUN cd /opt && \
     git clone https://github.com/Itseez/opencv.git && \
     cd /opt/opencv/ && \
@@ -39,11 +41,15 @@ RUN mkdir -p /opt/opencv/build && \
     cd /opt/opencv/build && \
     cmake -D CMAKE_BUILD_TYPE=RELEASE \
 		-D CMAKE_INSTALL_PREFIX=/usr/local \
-		-D INSTALL_C_EXAMPLES=OFF \
+		-D INSTALL_C_EXAMPLES=ON \
 		-D INSTALL_PYTHON_EXAMPLES=ON \
+        -D WITH_CVSBA=OFF \
 		-D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib/modules \
-		-D BUILD_EXAMPLES=ON .. && \
-	make -j8 && make install && ldconfig
+		-D BUILD_EXAMPLES=ON \
+        .. && \
+	make -j8 && \
+    make install && \
+    ldconfig
 
 
 # Caffe latest
@@ -55,9 +61,17 @@ ENV CLONE_TAG=master
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://github.com/BVLC/caffe.git . && \
     for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
-    mkdir build && cd build && \
-    cmake -DCPU_ONLY=1 .. && \
-    make -j"$(nproc)"
+    mkdir /opt/caffe/build && \
+    cd /opt/caffe/build && \
+    cmake -D CPU_ONLY=ON \
+          -D USE_OPENCV=ON \
+          -D CMAKE_BUILD_TYPE=RELEASE \
+          -D CMAKE_INSTALL_PREFIX=/usr/local \
+          -D INSTALL_C_EXAMPLES=ON \
+          -D INSTALL_PYTHON_EXAMPLES=ON \
+          -D BUILD_EXAMPLES=ON \
+          ..
+    make -j"$(nproc)" && \
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
